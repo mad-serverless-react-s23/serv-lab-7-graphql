@@ -10,6 +10,11 @@
       "StackName": "amplify-servlab7graphql-dev-181546",
       "StackId": "arn:aws:cloudformation:us-east-2:230395760767:stack/amplify-servlab7graphql-dev-181546/230a13d0-d0e3-11ed-a955-06e9379ad855",
       "AmplifyAppId": "d1etdeb12xp5j2"
+    },
+    "categories": {
+      "api": {
+        "servlab7graphql": {}
+      }
     }
   }
 }
