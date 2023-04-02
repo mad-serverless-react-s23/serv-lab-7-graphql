@@ -15,15 +15,15 @@ const initialState = {
 const reducer = (state, action) => {
   switch(action.type) {
     case 'SET_NOTES':
-      return { ...state, notes: action.notes, loading: false }
+      return { ...state, notes: action.notes, loading: false };
     case 'ERROR':
-      return { ...state, loading: false, error: true }
+      return { ...state, loading: false, error: true };
     default:
       return state;
   }
 };
 
-function App() {
+const App = () => {
   // copy from book... i think this is the right spot...
   const [state, dispatch] = useReducer(reducer, initialState);
   // add fetch notes function
@@ -32,15 +32,15 @@ function App() {
       const notesData = await API.graphql({
         query: listNotes
       })
-      dispatch({ type: 'SET_NOTES', notes: notesData.listNotes.items })
+      dispatch({ type: 'SET_NOTES', notes: notesData.data.listNotes.items });
     } catch (err) {
-      console.log('error: ', err)
-      dispatch({ type: 'ERROR' })
+      console.log('error: ', err);
+      dispatch({ type: 'ERROR' });
     }
   };
   // invoke the fetch notes
   useEffect(() => {
-    fetchNotes()
+    fetchNotes();
   }, []);
   // now the render item function for the List
   const renderItem = (item) => (
@@ -55,7 +55,7 @@ function App() {
   const styles = {
     container: {padding: 20},
     input: {marginBottom: 10},
-    item: { textAlign: 'left '},
+    item: { textAlign: 'left'},
     p: { color: '#1890ff' }
   };
 
