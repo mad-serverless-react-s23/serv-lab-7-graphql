@@ -69,12 +69,13 @@ const App = () => {
       console.log("error: ", err);
     };
 
-    const onChange = (e) => dispatch({ 
-        type: 'SET_INPUT', 
-        name: e.target.name, 
-        value: e.target.value
-      });
+    
   };
+  const onChange = (e) => dispatch({ 
+    type: 'SET_INPUT', 
+    name: e.target.name, 
+    value: e.target.value
+  });
   // invoke the fetch notes
   useEffect(() => {
     fetchNotes();
