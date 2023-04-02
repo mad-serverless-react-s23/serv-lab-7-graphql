@@ -74,6 +74,8 @@ const App = () => {
     
   };
   // I want the update function before the delete function...
+  // this finds the index of the note to change, reverses the complete property,
+  // updates the array in the local state and passes it to the API
   const updateNote = async(note) => {
     // I remembered to use async!
     const index = state.notes.findIndex(n => n.id === note.id);
@@ -127,14 +129,21 @@ const App = () => {
     item: { textAlign: 'left'},
     p: { color: '#1890ff' }
   };
-  // putting a call to the delete function in a new actions prop
+  // add call to update function and react fragments to contain all that p
   const renderItem = (item) => (
     <List.Item 
       style={styles.item}
       actions={[
-        <p style={styles.p}
-          onClick={() => deleteNote(item)}
-        >Delete</p>
+        <>
+          <p style={styles.p}
+            onClick={() => deleteNote(item)}
+          >Delete</p>
+          <p style={styles.p}
+            onClick={() => updateNote(item)}
+          >
+            {item.complete ? 'Complete' : 'Mark Complete'}
+          </p>
+        </>        
       ]}>
       <List.Item.Meta 
         title={item.name}
