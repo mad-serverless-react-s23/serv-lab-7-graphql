@@ -44,16 +44,23 @@ function App() {
   }, []);
   // now the render item function for the List
   const renderItem = (item) => (
-    <List.Item style={StyleSheet.item}>
+    <List.Item style={styles.item}>
       <List.Item.Meta 
         title={item.name}
         description={item.description}
       />
     </List.Item>
   );
+  // and now to put in styles?
+  const styles = {
+    container: {padding: 20},
+    input: {marginBottom: 10},
+    item: { textAlign: 'left '},
+    p: { color: '#1890ff' }
+  };
 
   return (
-    <div style={StyleSheet.container}>
+    <div style={styles.container}>
       <List 
         loading={state.loading}
         dataSource={state.notes}
