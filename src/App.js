@@ -6,7 +6,8 @@ import { listNotes } from './graphql/queries';
 import { v4 as uuid } from 'uuid';
 import { 
   createNote as CreateNote,
-  deleteNote as DeleteNote
+  deleteNote as DeleteNote,
+  updateNote as UpdateNote
 } from './graphql/mutations';
 
 const CLIENT_ID = uuid();
