@@ -73,6 +73,9 @@ const App = () => {
     
   };
   // adding the delete function here - preserve pattern of mutations after fetch
+  // this function finds the index of the note to delete and creates a new notes
+  // array without the deleted one and dispatches to update local state with
+  // the optimistic response. next, add delete button to List.Item
   const deleteNote = ({ id }) => {
     const index = state.notes.findIndex(n => n.id === id);
     const notes = [
@@ -107,9 +110,15 @@ const App = () => {
     item: { textAlign: 'left'},
     p: { color: '#1890ff' }
   };
-  // now the render item function for the List
+  // putting a call to the delete function in a new actions prop
   const renderItem = (item) => (
-    <List.Item style={styles.item}>
+    <List.Item 
+      style={styles.item}
+      actions={[
+        <p style={styles.p}
+          onClick={() => deleteNote(item)}
+        >Delete</p>
+      ]}>
       <List.Item.Meta 
         title={item.name}
         description={item.description}
