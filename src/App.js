@@ -11,8 +11,17 @@ const initialState = {
   error: false,
   form: { name: '', description: '' }
 };
-
-
+// setting up reducer with only cases to set not array or error
+function reducer(state, action) {
+  switch(action.type) {
+    case 'SET_NOTES':
+      return { ...state, notes: action.notes, loading: false }
+    case 'ERROR':
+      return { ...state, loading: false, error: true }
+    default:
+      return state;
+  }
+};
 
 function App() {
   return (
