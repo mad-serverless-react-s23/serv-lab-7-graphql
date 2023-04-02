@@ -72,6 +72,25 @@ const App = () => {
     };
     
   };
+  // adding the delete function here - preserve pattern of mutations after fetch
+  const deleteNote = ({ id }) => {
+    const index = state.notes.findIndex(n => n.id === id);
+    const notes = [
+      ...state.notes.slice(0, index),
+      ...state.notes.slice(index + 1)
+    ];
+    dispatch({ type: 'SET_NOTES', notes });
+    try {
+      await API.graphql({
+        query: DeleteNote,
+        variables: { input: { id } }
+      });
+      console.log('You deleted a note');
+    } catch (err) {
+      console.log({ err });
+    };
+  };
+  
   const onChange = (e) => dispatch({ 
     type: 'SET_INPUT', 
     name: e.target.name, 
