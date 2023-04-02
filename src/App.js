@@ -89,14 +89,35 @@ const App = () => {
       console.log("error: ", err);
     };
 
-    const onChange = (e) => dispatch({ 
-      type: 'SET_INPUT', 
-      name: e.target.name, 
-      value: e.target.value });
+    const onChange = (e) => {
+      dispatch({ 
+        type: 'SET_INPUT', 
+        name: e.target.name, 
+        value: e.target.value
+      })
+    }
   }
 
   return (
     <div style={styles.container}>
+      <Input 
+        onChange={onChange}
+        value={state.form.name}
+        placeholder="Name your note"
+        name='name'
+        style={styles.input}
+      />
+      <Input 
+        onChange={onChange}
+        value={state.form.description}
+        placeholder="Describe your note"
+        name='description'
+        style={styles.input}
+      />
+      <Button
+        onClick={createNote}
+        type="primary"
+      >Create This Note</Button>
       <List 
         loading={state.loading}
         dataSource={state.notes}
