@@ -76,15 +76,14 @@ const App = () => {
   // this function finds the index of the note to delete and creates a new notes
   // array without the deleted one and dispatches to update local state with
   // the optimistic response. next, add delete button to List.Item
-  const deleteNote = ({ id }) => {
+  const deleteNote = async({ id }) => {
     const index = state.notes.findIndex(n => n.id === id);
     const notes = [
       ...state.notes.slice(0, index),
       ...state.notes.slice(index + 1)
     ];
-    dispatch({ type: 'SET_NOTES', notes });
-    try {
-      await API.graphql({
+    dispatch({ type: 'SET_NOTES', notes })
+    try { await API.graphql({
         query: DeleteNote,
         variables: { input: { id } }
       });
