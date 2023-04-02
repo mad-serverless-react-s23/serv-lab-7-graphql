@@ -1,5 +1,5 @@
 import './App.css';
-import React, { useState, useReducer } from 'react';
+import React, { useEffect, useReducer } from 'react';
 import { API } from 'aws-amplify';
 import { List } from 'antd';
 import 'antd/dist/antd.css';
@@ -38,6 +38,10 @@ function App() {
       dispatch({ type: 'ERROR' })
     }
   };
+  // invoke the fetch notes
+  useEffect(() => {
+    fetchNotes()
+  }, []);
 
   return (
     <div className="App">
