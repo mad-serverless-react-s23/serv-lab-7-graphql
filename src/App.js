@@ -42,6 +42,13 @@ const App = () => {
   useEffect(() => {
     fetchNotes();
   }, []);
+  // and now to put in styles?
+  const styles = {
+    container: {padding: 20},
+    input: {marginBottom: 10},
+    item: { textAlign: 'left'},
+    p: { color: '#1890ff' }
+  };
   // now the render item function for the List
   const renderItem = (item) => (
     <List.Item style={styles.item}>
@@ -51,13 +58,6 @@ const App = () => {
       />
     </List.Item>
   );
-  // and now to put in styles?
-  const styles = {
-    container: {padding: 20},
-    input: {marginBottom: 10},
-    item: { textAlign: 'left'},
-    p: { color: '#1890ff' }
-  };
 
   return (
     <div style={styles.container}>
