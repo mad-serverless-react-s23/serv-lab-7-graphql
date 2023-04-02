@@ -96,7 +96,7 @@ const App = () => {
   const deleteNote = async({ id }) => {
     const index = state.notes.findIndex(n => n.id === id);
     const notes = [
-      ...state.notes.slice(0, index),
+      ...state.notes.slice(0, index), // how would using .filter work here?
       ...state.notes.slice(index + 1)
     ];
     dispatch({ type: 'SET_NOTES', notes })
