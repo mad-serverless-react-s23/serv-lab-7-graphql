@@ -117,10 +117,23 @@ const App = () => {
     name: e.target.name, 
     value: e.target.value
   });
-  
+  // update useEffect to include subscription call
   useEffect(() => {
     fetchNotes();
+    const subscription = API.graphql({
+      query: onCreateNote
+    }).subscirbe({
+      next: noteData => {
+        const note = noteData.value.data.onCreateNote;
+        if (CLIENT_ID === note.clientId) 
+          return dispatch({ type: 'ADD_NOTE', note })
+      }
+    })
+    return () => subscription.unsubscribe();
   }, []);
+  // The subscription activates with onCreateNote event. Not quite understanding.
+  // I guess if the client makes the note, all is well
+  // if note not made by client, the app tells the subscriber?
   
   const styles = {
     container: {padding: 20},
