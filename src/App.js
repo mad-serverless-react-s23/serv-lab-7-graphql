@@ -24,6 +24,21 @@ function reducer(state, action) {
 };
 
 function App() {
+  // copy from book... i think this is the right spot...
+  const [state, dispatch] = useReducer(reducer, initialState);
+  // add fetch notes function
+  const fetchNotes = async() => {
+    try {
+      const notesData = await API.graphql({
+        query: listNotes
+      })
+      dispatch({ type: 'SET_NOTES', notes: notesData.listNotes.items })
+    } catch (err) {
+      console.log('error: ', err)
+      dispatch({ type: 'ERROR' })
+    }
+  };
+
   return (
     <div className="App">
       <h1>Hello, this works for now</h1>
