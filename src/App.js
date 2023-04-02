@@ -68,6 +68,27 @@ const App = () => {
       />
     </List.Item>
   );
+  // create note copied from book
+  const createNote = async() => {
+
+    const { form } = state;
+    if (!form.name || !form.description) {
+      return alert('Your note needs a name and description');
+    };
+
+    const note = { ...form, clientId: CLIENT_ID, completed: false, id: uuid() };
+    dispatch({ type: 'ADD_NOTE', note });
+    dispatch({ type: 'RESET_FORM' });
+    try {
+      await API.graphql({
+        query: CreateNote,
+        variables: { input: note }
+      });
+      console.log('You created a note!');
+    } catch (err) {
+      console.log("error: ", err);
+    };
+  }
 
   return (
     <div style={styles.container}>
