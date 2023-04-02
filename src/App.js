@@ -48,27 +48,7 @@ const App = () => {
       dispatch({ type: 'ERROR' });
     }
   };
-  // invoke the fetch notes
-  useEffect(() => {
-    fetchNotes();
-  }, []);
-  // and now to put in styles?
-  const styles = {
-    container: {padding: 20},
-    input: {marginBottom: 10},
-    item: { textAlign: 'left'},
-    p: { color: '#1890ff' }
-  };
-  // now the render item function for the List
-  const renderItem = (item) => (
-    <List.Item style={styles.item}>
-      <List.Item.Meta 
-        title={item.name}
-        description={item.description}
-      />
-    </List.Item>
-  );
-  // create note copied from book
+  // put create note here as in demo
   const createNote = async() => {
 
     const { form } = state;
@@ -96,7 +76,27 @@ const App = () => {
         value: e.target.value
       })
     }
-  }
+  };
+  // invoke the fetch notes
+  useEffect(() => {
+    fetchNotes();
+  }, []);
+  // and now to put in styles?
+  const styles = {
+    container: {padding: 20},
+    input: {marginBottom: 10},
+    item: { textAlign: 'left'},
+    p: { color: '#1890ff' }
+  };
+  // now the render item function for the List
+  const renderItem = (item) => (
+    <List.Item style={styles.item}>
+      <List.Item.Meta 
+        title={item.name}
+        description={item.description}
+      />
+    </List.Item>
+  );
 
   return (
     <div style={styles.container}>
