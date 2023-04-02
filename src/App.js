@@ -2,7 +2,6 @@ import './App.css';
 import React, { useEffect, useReducer } from 'react';
 import { API } from 'aws-amplify';
 import { List, Input, Button } from 'antd';
-// import 'antd/dist/reset.css';
 import { listNotes } from './graphql/queries';
 import { v4 as uuid } from 'uuid';
 import { createNote as CreateNote } from './graphql/mutations';
@@ -56,7 +55,7 @@ const App = () => {
       return alert('Your note needs a name and description');
     };
 
-    const note = { ...form, clientId: CLIENT_ID, completed: false, id: uuid() };
+    const note = { ...form, clientId: CLIENT_ID, complete: false, id: uuid() };
     dispatch({ type: 'ADD_NOTE', note });
     dispatch({ type: 'RESET_FORM' });
     try {
@@ -68,7 +67,6 @@ const App = () => {
     } catch (err) {
       console.log("error: ", err);
     };
-
     
   };
   const onChange = (e) => dispatch({ 
