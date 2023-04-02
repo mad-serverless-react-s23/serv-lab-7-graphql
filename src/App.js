@@ -73,10 +73,27 @@ const App = () => {
     };
     
   };
-  // adding the delete function here - preserve pattern of mutations after fetch
-  // this function finds the index of the note to delete and creates a new notes
-  // array without the deleted one and dispatches to update local state with
-  // the optimistic response. next, add delete button to List.Item
+  // I want the update function before the delete function...
+  const updateNote = async(note) => {
+    // I remembered to use async!
+    const index = state.notes.findIndex(n => n.id === note.id);
+    const notes = [...state.notes];
+    notes[index].complete = !note.complete;
+    // that d I left off bit me on adding notes...
+    dispatch({ type: 'SET_NOTES', notes })
+    try {
+      await API.graphql({
+        query: UpdateNote,
+        variables: { input: { 
+          id: note.id, complete: notes[index].complete }
+        }
+      });
+      console.log('You updated a note');
+    } catch (err) {
+      console.log('error: ', err)
+    };
+  };
+
   const deleteNote = async({ id }) => {
     const index = state.notes.findIndex(n => n.id === id);
     const notes = [
