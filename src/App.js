@@ -4,7 +4,10 @@ import { API } from 'aws-amplify';
 import { List, Input, Button } from 'antd';
 import { listNotes } from './graphql/queries';
 import { v4 as uuid } from 'uuid';
-import { createNote as CreateNote } from './graphql/mutations';
+import { 
+  createNote as CreateNote,
+  deleteNote as DeleteNote
+} from './graphql/mutations';
 
 const CLIENT_ID = uuid();
 
