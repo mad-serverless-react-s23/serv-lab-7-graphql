@@ -12,7 +12,7 @@ const initialState = {
   form: { name: '', description: '' }
 };
 // setting up reducer with only cases to set not array or error
-function reducer(state, action) {
+const reducer = (state, action) => {
   switch(action.type) {
     case 'SET_NOTES':
       return { ...state, notes: action.notes, loading: false }
@@ -42,6 +42,15 @@ function App() {
   useEffect(() => {
     fetchNotes()
   }, []);
+  // now the render item function for the List
+  const renderItem = (item) => (
+    <List.Item style={StyleSheet.item}>
+      <List.Item.Meta 
+        title={item.name}
+        description={item.description}
+      />
+    </List.Item>
+  );
 
   return (
     <div style={StyleSheet.container}>
