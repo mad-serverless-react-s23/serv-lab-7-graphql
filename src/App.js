@@ -2,7 +2,7 @@ import './App.css';
 import React, { useEffect, useReducer } from 'react';
 import { API } from 'aws-amplify';
 import { List } from 'antd';
-import 'antd/dist/antd.css';
+import 'antd/dist/reset.css';
 import { listNotes } from './graphql/queries';
 
 const initialState = {
