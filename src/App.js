@@ -44,8 +44,12 @@ function App() {
   }, []);
 
   return (
-    <div className="App">
-      <h1>Hello, this works for now</h1>
+    <div style={StyleSheet.container}>
+      <List 
+        loading={state.loading}
+        dataSource={state.notes}
+        renderItem={renderItem}
+      />
     </div>
   );
 }
