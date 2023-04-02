@@ -5,6 +5,15 @@ import { List } from 'antd';
 import 'antd/dist/antd.css';
 import { listNotes } from './graphql/queries';
 
+const initialState = {
+  notes: [],
+  loading: true,
+  error: false,
+  form: { name: '', description: '' }
+};
+
+
+
 function App() {
   return (
     <div className="App">
