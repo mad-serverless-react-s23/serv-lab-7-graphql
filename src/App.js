@@ -9,6 +9,7 @@ import {
   deleteNote as DeleteNote,
   updateNote as UpdateNote
 } from './graphql/mutations';
+import { onCreateNote } from './graphql/subscriptions';
 
 const CLIENT_ID = uuid();
 
@@ -108,6 +109,8 @@ const App = () => {
       console.log({ err });
     };
   };
+  // enter the subscription function here...
+  // so it's talking about doing what already seems to be happening...
   
   const onChange = (e) => dispatch({ 
     type: 'SET_INPUT', 
