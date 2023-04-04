@@ -142,20 +142,21 @@ const App = () => {
       style={styles.item}
       actions={[
         <>
-          <p style={styles.p}
+          <span
             onClick={() => deleteNote(item)}
-          >Delete</p>
-          <p style={styles.p}
+          >Delete // </span>
+          <span
             onClick={() => updateNote(item)}
           >
             {item.complete ? 'Complete' : 'Mark Complete'}
-          </p>
+          </span>
         </>        
       ]}>
       <List.Item.Meta 
         title={item.name}
-        description={item.description}
+        description={item.assign}
       />
+      {item.description}
     </List.Item>
   );
 
@@ -178,7 +179,7 @@ const App = () => {
       <Input 
         onChange={onChange}
         value={state.form.assign}
-        placeholder="Whose task is this?"
+        placeholder="Whose note is this?"
         name='assign'
         style={styles.input}
       />
