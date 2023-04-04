@@ -71,8 +71,7 @@ const App = () => {
       console.log('You created a note!');
     } catch (err) {
       console.log("error: ", err);
-    };
-    
+    };    
   };
   
   const updateNote = async(note) => {
@@ -116,7 +115,6 @@ const App = () => {
     value: e.target.value
   });
 
-  // something went wrong here...
   useEffect(() => {
     fetchNotes();
     const subscription = API.graphql({
@@ -127,7 +125,7 @@ const App = () => {
           const note = noteData.value.data.onCreateNote;
           if (CLIENT_ID === note.clientId) return
           dispatch({ type: 'ADD_NOTE', note })
-        }
+        } // refresh UI with notes added by other clients; already refreshes when current client adds a note
     })
     return () => subscription.unsubscribe();
   }, []);
