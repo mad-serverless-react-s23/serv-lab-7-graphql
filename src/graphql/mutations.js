@@ -12,6 +12,7 @@ export const createNote = /* GraphQL */ `
       name
       description
       complete
+      assign
       createdAt
       updatedAt
     }
@@ -28,6 +29,7 @@ export const updateNote = /* GraphQL */ `
       name
       description
       complete
+      assign
       createdAt
       updatedAt
     }
@@ -44,6 +46,7 @@ export const deleteNote = /* GraphQL */ `
       name
       description
       complete
+      assign
       createdAt
       updatedAt
     }
