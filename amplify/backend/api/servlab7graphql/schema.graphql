@@ -8,5 +8,4 @@ type Note @model {
   name: String!
   description: String
   complete: Boolean
-  assign: String
 }
