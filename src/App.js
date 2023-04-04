@@ -175,6 +175,13 @@ const App = () => {
         name='description'
         style={styles.input}
       />
+      <Input 
+        onChange={onChange}
+        value={state.form.assign}
+        placeholder="Whose task is this?"
+        name='assign'
+        style={styles.input}
+      />
       <Button
         onClick={createNote}
         type="primary"
