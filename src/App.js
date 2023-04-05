@@ -1,7 +1,12 @@
 import './App.css';
 import React, { useEffect, useReducer } from 'react';
 import { API } from 'aws-amplify';
-import { List, Input, Button } from 'antd';
+import { 
+  List, 
+  Input, 
+  Button,
+  Space
+} from 'antd';
 import { listNotes } from './graphql/queries';
 import { v4 as uuid } from 'uuid';
 import { 
@@ -142,14 +147,17 @@ const App = () => {
       style={styles.item}
       actions={[
         <>
-          <span
-            onClick={() => deleteNote(item)}
-          >Delete // </span>
-          <span
-            onClick={() => updateNote(item)}
-          >
-            {item.complete ? 'Complete' : 'Mark Complete'}
-          </span>
+          <Space>
+            <span
+              onClick={() => deleteNote(item)}
+            >Delete</span>
+            ||
+            <span
+              onClick={() => updateNote(item)}
+            >
+              {item.complete ? 'Complete' : 'Mark Complete'}
+            </span>
+          </Space>          
         </>        
       ]}>
       <List.Item.Meta 
