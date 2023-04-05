@@ -42,16 +42,16 @@ const reducer = (state, action) => {
   }
 };
 
-const App = () => {
-  
-  const [state, dispatch] = useReducer(reducer, initialState);
-  
+const App = () => {  
+  const [state, dispatch] = useReducer(reducer, initialState);  
   const fetchNotes = async() => {
     try {
       const notesData = await API.graphql({
         query: listNotes
       })
-      dispatch({ type: 'SET_NOTES', notes: notesData.data.listNotes.items });
+      dispatch({ 
+        type: 'SET_NOTES', 
+        notes: notesData.data.listNotes.items });
     } catch (err) {
       console.log('error: ', err);
       dispatch({ type: 'ERROR' });
@@ -59,13 +59,15 @@ const App = () => {
   };
   
   const createNote = async() => {
-
     const { form } = state;
     if (!form.name || !form.description) {
       return alert('Your note needs a name and description');
     };
-
-    const note = { ...form, clientId: CLIENT_ID, complete: false, id: uuid() };
+    const note = { 
+      ...form, 
+      clientId: CLIENT_ID, 
+      complete: false, id: uuid() 
+    };
     dispatch({ type: 'ADD_NOTE', note });
     dispatch({ type: 'RESET_FORM' });
     try {
@@ -73,7 +75,6 @@ const App = () => {
         query: CreateNote,
         variables: { input: note }
       });
-      console.log('You created a note!');
     } catch (err) {
       console.log("error: ", err);
     };    
@@ -91,7 +92,6 @@ const App = () => {
           id: note.id, complete: notes[index].complete }
         }
       });
-      console.log('You updated a note');
     } catch (err) {
       console.log('error: ', err)
     };
@@ -108,7 +108,6 @@ const App = () => {
         query: DeleteNote,
         variables: { input: { id } }
       });
-      console.log('You deleted a note');
     } catch (err) {
       console.log({ err });
     };
@@ -126,7 +125,6 @@ const App = () => {
           id: note.id, assign: notes[index].assign }
         }
       });
-      console.log('You updated a note');
     } catch (err) {
       console.log('error: ', err)
     };
@@ -161,12 +159,12 @@ const App = () => {
   };
 
   const showAssign = (item) => <Input 
-  onChange={onChange}
-  value={item.assign}
-  placeholder="Whose note is this?"
-  name='assign'
-  style={styles.input}
-/>;
+    onChange={onChange}
+    value={item.give}
+    placeholder="Assign this note"
+    name='give'
+    style={styles.input}
+  />;
   
   const renderItem = (item) => (
     <List.Item 
@@ -174,19 +172,21 @@ const App = () => {
       actions={[
         <>
           <Space>
-            {showAssign(item)}
+            <span>
+              {showAssign(item)}
+            </span>
             ||
-          <span
-            onClick={() => updateNote(item)}
-          >
-            {item.complete ? 'Complete' : 'Mark Complete'}
-          </span>
-            ||
-          <span
-            onClick={() => deleteNote(item)}
-          >
-            Delete
-          </span>
+            <span
+              onClick={() => updateNote(item)}
+            >
+              {item.complete ? 'Complete' : 'Mark Complete'}
+            </span>
+              ||
+            <span
+              onClick={() => deleteNote(item)}
+            >
+              Delete
+            </span>
           </Space>          
         </>        
       ]}>
