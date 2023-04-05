@@ -100,7 +100,7 @@ const App = () => {
   const deleteNote = async({ id }) => {
     const index = state.notes.findIndex(n => n.id === id);
     const notes = [
-      ...state.notes.slice(0, index), // how would using .filter work here?
+      ...state.notes.slice(0, index),
       ...state.notes.slice(index + 1)
     ];
     dispatch({ type: 'SET_NOTES', notes })
@@ -113,6 +113,10 @@ const App = () => {
       console.log({ err });
     };
   };
+
+  const assignNote = async(note) => {
+
+  }
   
   const onChange = (e) => dispatch({ 
     type: 'SET_INPUT', 
@@ -130,7 +134,7 @@ const App = () => {
           const note = noteData.value.data.onCreateNote;
           if (CLIENT_ID === note.clientId) return
           dispatch({ type: 'ADD_NOTE', note })
-        } // refresh UI with notes added by other clients; already refreshes when current client adds a note
+        }
     })
     return () => subscription.unsubscribe();
   }, []);
