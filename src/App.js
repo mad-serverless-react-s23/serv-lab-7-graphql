@@ -173,7 +173,7 @@ const App = () => {
         <>
           <Space>
             <span>
-              {showAssign(item)}
+              { item.assign ? item.assign : showAssign(item) }
             </span>
             ||
             <span
