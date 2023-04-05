@@ -116,7 +116,6 @@ const App = () => {
   const assignNote = async(note) => {
     const index = state.notes.findIndex(n => n.id === note.id);
     const notes = [...state.notes];
-    notes[index].assign = !note.assign
     dispatch({ type: 'SET_NOTES', notes })
     try {
       await API.graphql({
@@ -159,7 +158,6 @@ const App = () => {
   };
 
   const showAssign = (item) => <Input 
-    onChange={onChange}
     value={item.give}
     placeholder="Assign this note"
     name='give'
