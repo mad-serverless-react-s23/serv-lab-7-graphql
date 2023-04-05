@@ -148,15 +148,18 @@ const App = () => {
       actions={[
         <>
           <Space>
-            <span
-              onClick={() => deleteNote(item)}
-            >Delete</span>
+            Assign
             ||
-            <span
+          <span
               onClick={() => updateNote(item)}
             >
               {item.complete ? 'Complete' : 'Mark Complete'}
             </span>
+            ||
+            <span
+              onClick={() => deleteNote(item)}
+            >
+              Delete</span>
           </Space>          
         </>        
       ]}>
