@@ -160,7 +160,7 @@ const App = () => {
     p: { color: '#1890ff' }
   };
 
-  const showAssign = () => <Input 
+  const showAssign = (item) => <Input 
     onChange={onChange}
     value={state.form.assign}
     placeholder="Whose note is this?"
@@ -177,15 +177,16 @@ const App = () => {
             {showAssign()}
             ||
           <span
-              onClick={() => updateNote(item)}
-            >
-              {item.complete ? 'Complete' : 'Mark Complete'}
-            </span>
+            onClick={() => updateNote(item)}
+          >
+            {item.complete ? 'Complete' : 'Mark Complete'}
+          </span>
             ||
-            <span
-              onClick={() => deleteNote(item)}
-            >
-              Delete</span>
+          <span
+            onClick={() => deleteNote(item)}
+          >
+            Delete
+          </span>
           </Space>          
         </>        
       ]}>
