@@ -173,9 +173,9 @@ const App = () => {
         <>
           <Space>
             <span>
-              { item.assign ? item.assign : showAssign(item) }
+              { item.assign ? '' : showAssign(item) }
             </span>
-            ||
+              { item.assign ? '' : '||' }
             <span
               onClick={() => updateNote(item)}
             >
