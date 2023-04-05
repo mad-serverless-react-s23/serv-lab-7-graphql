@@ -161,12 +161,12 @@ const App = () => {
   };
 
   const showAssign = (item) => <Input 
-    onChange={onChange}
-    value={state.form.assign}
-    placeholder="Whose note is this?"
-    name='assign'
-    style={styles.input}
-  />;
+  onChange={onChange}
+  value={item.assign}
+  placeholder="Whose note is this?"
+  name='assign'
+  style={styles.input}
+/>;
   
   const renderItem = (item) => (
     <List.Item 
@@ -174,7 +174,7 @@ const App = () => {
       actions={[
         <>
           <Space>
-            {showAssign()}
+            {showAssign(item)}
             ||
           <span
             onClick={() => updateNote(item)}
@@ -214,7 +214,13 @@ const App = () => {
         name='description'
         style={styles.input}
       />
-      {showAssign()}
+      <Input 
+        onChange={onChange}
+        value={state.form.assign}
+        placeholder="Whose note is this?"
+        name='assign'
+        style={styles.input}
+      />
       <Button
         onClick={createNote}
         type="primary"
