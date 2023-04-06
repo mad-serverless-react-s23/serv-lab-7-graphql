@@ -1,5 +1,9 @@
 import './App.css';
-import React, { useEffect, useReducer } from 'react';
+import React, { 
+  useEffect, 
+  useReducer,
+  useState
+} from 'react';
 import { API } from 'aws-amplify';
 import { 
   List, 
@@ -43,7 +47,9 @@ const reducer = (state, action) => {
 };
 
 const App = () => {  
-  const [state, dispatch] = useReducer(reducer, initialState);  
+  const [state, dispatch] = useReducer(reducer, initialState);
+  const [assignment, setAssignment] = useState('');
+
   const fetchNotes = async() => {
     try {
       const notesData = await API.graphql({
@@ -113,9 +119,10 @@ const App = () => {
     };
   };
 
-  const assignNote = async(note) => {
+  const assignNote = async(note, x) => {
     const index = state.notes.findIndex(n => n.id === note.id);
     const notes = [...state.notes];
+    notes[index].assign = x;
     dispatch({ type: 'SET_NOTES', notes })
     try {
       await API.graphql({
@@ -157,12 +164,26 @@ const App = () => {
     p: { color: '#1890ff' }
   };
 
-  const showAssign = (item) => <Input 
-    value={item.give}
-    placeholder="Assign this note"
-    name='give'
-    style={styles.input}
-  />;
+  
+
+  const latestFuncAttempt = (e) => {
+    const item = e;
+    const grant = assignment;
+    assignNote(item, grant);
+  }
+
+  const showAssign = (item) => (
+    <>
+      <Input 
+        handleChange={e => setAssignment(e.target.value)}
+        placeholder="Assign this note"
+        style={styles.input}
+      />
+      <Button
+        onClick={() => latestFuncAttempt(item)}
+      >Assign</Button>
+    </>
+    );
   
   const renderItem = (item) => (
     <List.Item 
