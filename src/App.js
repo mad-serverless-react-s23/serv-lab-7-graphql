@@ -119,10 +119,10 @@ const App = () => {
     };
   };
 
-  const assignNote = async(note, x) => {
+  const assignNote = async(note) => {
     const index = state.notes.findIndex(n => n.id === note.id);
     const notes = [...state.notes];
-    notes[index].assign = x;
+    notes[index].assign = assignment;
     dispatch({ type: 'SET_NOTES', notes })
     try {
       await API.graphql({
@@ -166,21 +166,21 @@ const App = () => {
 
   
 
-  const latestFuncAttempt = (e) => {
-    const item = e;
-    const grant = assignment;
-    assignNote(item, grant);
-  }
+  // const latestFuncAttempt = (e) => {
+  //   const item = e;
+  //   const grant = assignment;
+  //   assignNote(item, grant);
+  // }
 
   const showAssign = (item) => (
     <>
       <Input 
-        handleChange={e => setAssignment(e.target.value)}
+        onChange={e => setAssignment(e.target.value)}
         placeholder="Assign this note"
         style={styles.input}
       />
       <Button
-        onClick={() => latestFuncAttempt(item)}
+        onClick={() => assignNote(item)}
       >Assign</Button>
     </>
     );
