@@ -162,14 +162,6 @@ const App = () => {
     p: { color: '#1890ff' }
   };
 
-  
-
-  // const latestFuncAttempt = (e) => {
-  //   const item = e;
-  //   const grant = assignment;
-  //   assignNote(item, grant);
-  // }
-
   const showAssign = (item) => (
     <>
       <Input 
