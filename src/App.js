@@ -88,7 +88,7 @@ const App = () => {
   
   const updateNote = async(note) => {
     const notes = [...state.notes];
-    const makeChange = notes.filter(x => x.id === note.id)[0];
+    const makeChange = notes.find(x => x.id === note.id);
     makeChange.complete = !note.complete;
     dispatch({ type: 'SET_NOTES', notes })
     try {
@@ -120,15 +120,15 @@ const App = () => {
   };
 
   const assignNote = async(note) => {
-    const index = state.notes.findIndex(n => n.id === note.id);
     const notes = [...state.notes];
-    notes[index].assign = assignment;
+    const toChange = notes.find(x => x.id === note.id);
+    toChange.assign = assignment;
     dispatch({ type: 'SET_NOTES', notes })
     try {
       await API.graphql({
         query: UpdateNote,
         variables: { input: { 
-          id: note.id, assign: notes[index].assign }
+          id: note.id, assign: toChange.assign }
         }
       });
     } catch (err) {
