@@ -88,14 +88,13 @@ const App = () => {
   
   const updateNote = async(note) => {
     const notes = [...state.notes];
-    const makeChange = notes.find(x => x.id === note.id);
-    makeChange.complete = !note.complete;
+    notes.find(x => x.id === note.id).complete = !note.complete;
     dispatch({ type: 'SET_NOTES', notes })
     try {
       await API.graphql({
         query: UpdateNote,
         variables: { input: { 
-          id: note.id, complete: makeChange.complete }
+          id: note.id, complete: note.complete }
         }
       });
     } catch (err) {
