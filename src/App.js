@@ -121,14 +121,13 @@ const App = () => {
 
   const assignNote = async(note) => {
     const notes = [...state.notes];
-    const toChange = notes.find(x => x.id === note.id);
-    toChange.assign = assignment;
+    notes.find(x => x.id === note.id).assign = assignment;
     dispatch({ type: 'SET_NOTES', notes })
     try {
       await API.graphql({
         query: UpdateNote,
         variables: { input: { 
-          id: note.id, assign: toChange.assign }
+          id: note.id, assign: note.assign }
         }
       });
     } catch (err) {
