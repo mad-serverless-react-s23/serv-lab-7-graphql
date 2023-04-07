@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/serv-lab-7-grapql/static/css/main.073c9b0a.css",
+    "main.js": "/serv-lab-7-grapql/static/js/main.0dd88551.js",
+    "static/js/787.7cda186a.chunk.js": "/serv-lab-7-grapql/static/js/787.7cda186a.chunk.js",
+    "index.html": "/serv-lab-7-grapql/index.html",
+    "main.073c9b0a.css.map": "/serv-lab-7-grapql/static/css/main.073c9b0a.css.map",
+    "main.0dd88551.js.map": "/serv-lab-7-grapql/static/js/main.0dd88551.js.map",
+    "787.7cda186a.chunk.js.map": "/serv-lab-7-grapql/static/js/787.7cda186a.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.073c9b0a.css",
+    "static/js/main.0dd88551.js"
+  ]
+}
